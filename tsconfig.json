@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "target": "es6",
+        "declaration": true,
+        "baseUrl": ".",
+        "paths": {
+            "@teronis-js/event-dispatcher": [
+                "src/index.ts"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
