@@ -15,7 +15,7 @@ declare module '@teronis-js/event-dispatcher/src/SingleEvent' {
         Remove(fn: any): void;
         Apply(scope: any, args: any): void;
         Call(scope: any, ...args: any[]): void;
-        Invoke(): void;
+        Invoke(...args: any[]): void;
     }
 }
 

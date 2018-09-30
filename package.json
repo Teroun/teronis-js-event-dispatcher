@@ -1,9 +1,9 @@
 {
   "name": "@teronis-js/event-dispatcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "private": true,
-  "main": "dist/teronis-js-event-dispatcher.js",
+  "browser": "dist/teronis-js-event-dispatcher.js",
   "module": "src/index.ts",
   "types": "dist/teronis-js-event-dispatcher.d.ts",
   "scripts": {

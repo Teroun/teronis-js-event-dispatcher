@@ -36,7 +36,7 @@ export class SingleEvent {
         this.Apply(scope, args);
     }
 
-    Invoke() {
-        this.Apply(undefined, arguments);
+    Invoke(...args: any[]) {
+        this.Apply(undefined, args);
     }
 }
