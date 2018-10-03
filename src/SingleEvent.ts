@@ -1,22 +1,22 @@
+// export interface EventHandler {
+//     (sender, args): void;
+// }
+
 /**
  * Presents the class to attach functions and invoke them all at once.
  */
 export class SingleEvent {
-    events: (() => void)[];
+    private events: Function[];
 
-    constructor() {
+    public constructor() {
         this.events = [];
     }
 
-    Add(fn) {
-        this.events = this.events || [];
+    public attach(fn: Function) {
         this.events.push(fn);
     }
 
-    Remove(fn) {
-        if (!this.events)
-            return;
-
+    public detach(fn: Function) {
         for (var i = 0; i < this.events.length; i++) {
             if (this.events[i] === fn) {
                 this.events.splice(i, 1);
@@ -25,18 +25,15 @@ export class SingleEvent {
         };
     }
 
-    Apply(scope, args) {
-        if (!this.events)
-            return;
-
+    public apply(scope, args?: any[]) {
         this.events.forEach((fn) => fn.apply(scope, args));
     }
 
-    Call(scope, ...args) {
-        this.Apply(scope, args);
+    public call(scope, ...args) {
+        this.apply(scope, args);
     }
 
-    Invoke(...args: any[]) {
-        this.Apply(undefined, args);
+    public invoke(...args) {
+        this.apply(undefined, args);
     }
 }

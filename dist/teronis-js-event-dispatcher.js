@@ -112,6 +112,10 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+// export interface EventHandler {
+//     (sender, args): void;
+// }
+
 /**
  * Presents the class to attach functions and invoke them all at once.
  */
@@ -125,16 +129,13 @@ function () {
   }
 
   _createClass(SingleEvent, [{
-    key: "Add",
-    value: function Add(fn) {
-      this.events = this.events || [];
+    key: "attach",
+    value: function attach(fn) {
       this.events.push(fn);
     }
   }, {
-    key: "Remove",
-    value: function Remove(fn) {
-      if (!this.events) return;
-
+    key: "detach",
+    value: function detach(fn) {
       for (var i = 0; i < this.events.length; i++) {
         if (this.events[i] === fn) {
           this.events.splice(i, 1);
@@ -145,30 +146,29 @@ function () {
       ;
     }
   }, {
-    key: "Apply",
-    value: function Apply(scope, args) {
-      if (!this.events) return;
+    key: "apply",
+    value: function apply(scope, args) {
       this.events.forEach(function (fn) {
         return fn.apply(scope, args);
       });
     }
   }, {
-    key: "Call",
-    value: function Call(scope) {
+    key: "call",
+    value: function call(scope) {
       for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         args[_key - 1] = arguments[_key];
       }
 
-      this.Apply(scope, args);
+      this.apply(scope, args);
     }
   }, {
-    key: "Invoke",
-    value: function Invoke() {
+    key: "invoke",
+    value: function invoke() {
       for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
         args[_key2] = arguments[_key2];
       }
 
-      this.Apply(undefined, args);
+      this.apply(undefined, args);
     }
   }]);
 
