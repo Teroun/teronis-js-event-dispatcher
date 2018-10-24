@@ -29,4 +29,8 @@ export class ArgtiveEvent<T extends any[] = any[]> {
     public invoke(...args: T) {
         this.apply(undefined, args);
     }
+
+    public length() {
+         return this.events.length;
+    }
 }

@@ -167,6 +167,11 @@ function () {
 
       this.apply(undefined, args);
     }
+  }, {
+    key: "length",
+    value: function length() {
+      return this.events.length;
+    }
   }]);
 
   return ArgtiveEvent;

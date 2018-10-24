@@ -7,5 +7,6 @@ export class ArgtiveEvent<T extends any[] = any[]> {
     apply(scope?: null, args?: T): void;
     call(scope?: null, ...args: T): void;
     invoke(...args: T): void;
+    length(): number;
 }
 
