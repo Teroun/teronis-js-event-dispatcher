@@ -96,39 +96,32 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/SingleEvent.ts":
-/*!****************************!*\
-  !*** ./src/SingleEvent.ts ***!
-  \****************************/
-/*! exports provided: SingleEvent */
+/***/ "./src/ArgtiveEvent.ts":
+/*!*****************************!*\
+  !*** ./src/ArgtiveEvent.ts ***!
+  \*****************************/
+/*! exports provided: ArgtiveEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SingleEvent", function() { return SingleEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArgtiveEvent", function() { return ArgtiveEvent; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// export interface EventHandler {
-//     (sender, args): void;
-// }
-
-/**
- * Presents the class to attach functions and invoke them all at once.
- */
-var SingleEvent =
+var ArgtiveEvent =
 /*#__PURE__*/
 function () {
-  function SingleEvent() {
-    _classCallCheck(this, SingleEvent);
+  function ArgtiveEvent() {
+    _classCallCheck(this, ArgtiveEvent);
 
     this.events = [];
   }
 
-  _createClass(SingleEvent, [{
+  _createClass(ArgtiveEvent, [{
     key: "attach",
     value: function attach(fn) {
       this.events.push(fn);
@@ -147,14 +140,18 @@ function () {
     }
   }, {
     key: "apply",
-    value: function apply(scope, args) {
+    value: function apply() {
+      var scope = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      var args = arguments.length > 1 ? arguments[1] : undefined;
       this.events.forEach(function (fn) {
         return fn.apply(scope, args);
       });
     }
   }, {
     key: "call",
-    value: function call(scope) {
+    value: function call() {
+      var scope = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
       for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         args[_key - 1] = arguments[_key];
       }
@@ -172,7 +169,7 @@ function () {
     }
   }]);
 
-  return SingleEvent;
+  return ArgtiveEvent;
 }();
 
 /***/ }),
@@ -181,13 +178,13 @@ function () {
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: SingleEvent */
+/*! exports provided: ArgtiveEvent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _SingleEvent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SingleEvent */ "./src/SingleEvent.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SingleEvent", function() { return _SingleEvent__WEBPACK_IMPORTED_MODULE_0__["SingleEvent"]; });
+/* harmony import */ var _ArgtiveEvent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArgtiveEvent */ "./src/ArgtiveEvent.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ArgtiveEvent", function() { return _ArgtiveEvent__WEBPACK_IMPORTED_MODULE_0__["ArgtiveEvent"]; });
 
 
 

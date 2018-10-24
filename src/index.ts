@@ -1,1 +1,1 @@
-export { SingleEvent } from "./SingleEvent";
+export { ArgtiveEvent } from "./ArgtiveEvent";

@@ -1,11 +1,11 @@
-const SingleEvent = require("../dist/teronis-js-event-dispatcher").SingleEvent;
+const ArgtiveEvent = require("../dist/teronis-js-event-dispatcher").ArgtiveEvent;
 const assert = require("chai").assert;
 
-describe("SingleEvent", function () {
+describe("ArgtiveEvent", function () {
     let event;
 
     beforeEach(() => {
-        event = new SingleEvent();
+        event = new ArgtiveEvent();
     });
 
     it("attached function should trigger", (done) => {
