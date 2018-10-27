@@ -1,15 +1,18 @@
-export class ArgtiveEvent<T extends any[] = any[]> {
-    private events: Array<(...args: T) => void>;
+type DefaultFunction = (...args: any[]) => void;
+type Arguments<F extends Function> = F extends (...args: infer A) => any ? A : never;
+
+export class ArgtiveEvent<T extends DefaultFunction = DefaultFunction> {
+    private events: T[];
 
     public constructor() {
         this.events = [];
     }
 
-    public attach(fn: (...args: T) => void) {
+    public attach(fn: T) {
         this.events.push(fn);
     }
 
-    public detach(fn: (...args: T) => void) {
+    public detach(fn: Function) {
         for (var i = 0; i < this.events.length; i++) {
             if (this.events[i] === fn) {
                 this.events.splice(i, 1);
@@ -18,15 +21,15 @@ export class ArgtiveEvent<T extends any[] = any[]> {
         };
     }
 
-    public apply(scope = null, args?: T) {
+    public apply(scope = null, args?: Arguments<T>) {
         this.events.forEach((fn) => fn.apply(scope, args));
     }
 
-    public call(scope = null, ...args: T) {
+    public call(scope = null, ...args: Arguments<T>) {
         this.apply(scope, args);
     }
 
-    public invoke(...args: T) {
+    public invoke(...args: Arguments<T>) {
         this.apply(undefined, args);
     }
 
