@@ -1,6 +1,8 @@
 type DefaultFunction = (...args: any[]) => void;
 type Arguments<F extends Function> = F extends (...args: infer A) => any ? A : never;
 
+export type UnsubscribeArgtiveEventHandler = () => void;
+
 export class ArgtiveEvent<T extends DefaultFunction = DefaultFunction> {
     private events: T[];
 
@@ -8,11 +10,21 @@ export class ArgtiveEvent<T extends DefaultFunction = DefaultFunction> {
         this.events = [];
     }
 
-    public attach(fn: T) {
+    /**
+     * All subscriptions will be called at once, when this event instance gets invoked.
+     * @param fn
+     * @returns A function you can call to unsubscribe.
+     */
+    public subscribe(fn: T) : UnsubscribeArgtiveEventHandler {
         this.events.push(fn);
+        return () => this.unsubscribe(fn) ;
     }
 
-    public detach(fn: Function) {
+    /**
+     * Unsubscribe a handler you subscribed before.
+     * @param fn 
+     */
+    public unsubscribe(fn: T) {
         for (var i = 0; i < this.events.length; i++) {
             if (this.events[i] === fn) {
                 this.events.splice(i, 1);
@@ -20,7 +32,7 @@ export class ArgtiveEvent<T extends DefaultFunction = DefaultFunction> {
             }
         };
     }
-
+    
     public apply(scope = null, args?: Arguments<T>) {
         this.events.forEach((fn) => fn.apply(scope, args));
     }
@@ -33,7 +45,10 @@ export class ArgtiveEvent<T extends DefaultFunction = DefaultFunction> {
         this.apply(undefined, args);
     }
 
+    /**
+     * @returns The amount of subscriptions.
+     */
     public length() {
-         return this.events.length;
+        return this.events.length;
     }
 }

@@ -120,15 +120,31 @@ function () {
 
     this.events = [];
   }
+  /**
+   * All subscriptions will be called at once, when this event instance gets invoked.
+   * @param fn
+   * @returns A function you can call to unsubscribe.
+   */
+
 
   _createClass(ArgtiveEvent, [{
-    key: "attach",
-    value: function attach(fn) {
+    key: "subscribe",
+    value: function subscribe(fn) {
+      var _this = this;
+
       this.events.push(fn);
+      return function () {
+        return _this.unsubscribe(fn);
+      };
     }
+    /**
+     * Unsubscribe a handler you subscribed before.
+     * @param fn
+     */
+
   }, {
-    key: "detach",
-    value: function detach(fn) {
+    key: "unsubscribe",
+    value: function unsubscribe(fn) {
       for (var i = 0; i < this.events.length; i++) {
         if (this.events[i] === fn) {
           this.events.splice(i, 1);
@@ -167,6 +183,10 @@ function () {
 
       this.apply(undefined, args);
     }
+    /**
+     * @returns The amount of subscriptions.
+     */
+
   }, {
     key: "length",
     value: function length() {

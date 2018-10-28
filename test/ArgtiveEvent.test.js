@@ -17,21 +17,21 @@ describe("ArgtiveEvent", function () {
     const args = [1, 2, 3];
 
     describe("#invoke()", () => {
-        it("attached function should trigger", (done) => {
-            event.attach(() => done());
+        it("subscribed function should trigger", (done) => {
+            event.subscribe(() => done());
             event.invoke();
         });
     
         it("removed function should not trigger", (done) => {
-            const handler = () => done(new Error("This function should be detached."));
-            event.attach(handler);
-            event.detach(handler);
+            const handler = () => done(new Error("This function should be unsubscribed."));
+            event.subscribe(handler);
+            event.unsubscribe(handler);
             event.invoke();
             done();
         });
 
         it("arguments are passed correctly", () => {
-            event.attach(function (...scopeArgs) {
+            event.subscribe(function (...scopeArgs) {
                 assert.deepStrictEqual(scopeArgs, args, "arguments are not passed correctly");
             });
             event.invoke(...args);
@@ -40,7 +40,7 @@ describe("ArgtiveEvent", function () {
 
     describe("#call()", () => {
         it("arguments and scope are passed correctly", () => {
-            event.attach(function (...scopeArgs) {
+            event.subscribe(function (...scopeArgs) {
                 assert.deepStrictEqual(scopeArgs, args, "arguments are not passed correctly");
                 assert.deepStrictEqual(this, scope, "scope is not passed correctly");
             });
@@ -50,7 +50,7 @@ describe("ArgtiveEvent", function () {
 
     describe("#apply()", () => {
         it("arguments and scope are passed correctly", () => {
-            event.attach(function (...scopeArgs) {
+            event.subscribe(function (...scopeArgs) {
                 assert.deepStrictEqual(scopeArgs, args, "arguments are not passed correctly");
                 assert.deepStrictEqual(this, scope, "scope is not passed correctly");
             });
@@ -60,8 +60,8 @@ describe("ArgtiveEvent", function () {
 
     describe("#length()", () => {
         it("length is correct", () => {
-            event.attach(() => {});
-            event.attach(() => {});
+            event.subscribe(() => {});
+            event.subscribe(() => {});
             const length = event.length();
             assert.deepStrictEqual(length, 2, "the length is not equals 2");
         });
