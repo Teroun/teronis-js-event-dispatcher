@@ -121,14 +121,18 @@ function () {
     this.events = [];
   }
   /**
-   * All subscriptions will be called at once, when this event instance gets invoked.
-   * @param fn
-   * @returns A function you can call to unsubscribe.
+   * @returns The amount of subscriptions.
    */
 
 
   _createClass(ArgtiveEvent, [{
     key: "subscribe",
+
+    /**
+     * All subscriptions will be called at once, when this event instance gets invoked.
+     * @param fn
+     * @returns A function you can call to unsubscribe.
+     */
     value: function subscribe(fn) {
       var _this = this;
 
@@ -183,13 +187,9 @@ function () {
 
       this.apply(undefined, args);
     }
-    /**
-     * @returns The amount of subscriptions.
-     */
-
   }, {
     key: "length",
-    value: function length() {
+    get: function get() {
       return this.events.length;
     }
   }]);

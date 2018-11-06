@@ -11,6 +11,13 @@ export class ArgtiveEvent<T extends DefaultFunction = DefaultFunction> {
     }
 
     /**
+     * @returns The amount of subscriptions.
+     */
+    public get length() {
+        return this.events.length;
+    }
+
+    /**
      * All subscriptions will be called at once, when this event instance gets invoked.
      * @param fn
      * @returns A function you can call to unsubscribe.
@@ -43,12 +50,5 @@ export class ArgtiveEvent<T extends DefaultFunction = DefaultFunction> {
 
     public invoke(...args: Arguments<T>) {
         this.apply(undefined, args);
-    }
-
-    /**
-     * @returns The amount of subscriptions.
-     */
-    public length() {
-        return this.events.length;
     }
 }

@@ -6,6 +6,10 @@ export type UnsubscribeArgtiveEventHandler = () => void;
 export class ArgtiveEvent<T extends DefaultFunction = DefaultFunction> {
         constructor();
         /**
+            * @returns The amount of subscriptions.
+            */
+        readonly length: number;
+        /**
             * All subscriptions will be called at once, when this event instance gets invoked.
             * @param fn
             * @returns A function you can call to unsubscribe.
@@ -19,10 +23,6 @@ export class ArgtiveEvent<T extends DefaultFunction = DefaultFunction> {
         apply(scope?: null, args?: Arguments<T>): void;
         call(scope?: null, ...args: Arguments<T>): void;
         invoke(...args: Arguments<T>): void;
-        /**
-            * @returns The amount of subscriptions.
-            */
-        length(): number;
 }
 export {};
 

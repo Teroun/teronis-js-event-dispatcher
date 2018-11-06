@@ -21,7 +21,7 @@ describe("ArgtiveEvent", function () {
             event.subscribe(() => done());
             event.invoke();
         });
-    
+
         it("removed function should not trigger", (done) => {
             const handler = () => done(new Error("This function should be unsubscribed."));
             event.subscribe(handler);
@@ -58,11 +58,11 @@ describe("ArgtiveEvent", function () {
         });
     });
 
-    describe("#length()", () => {
+    describe("#length", () => {
         it("length is correct", () => {
             event.subscribe(() => {});
             event.subscribe(() => {});
-            const length = event.length();
+            const length = event.length;
             assert.deepStrictEqual(length, 2, "the length is not equals 2");
         });
     });
