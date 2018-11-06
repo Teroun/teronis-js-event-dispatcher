@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else {
-		var a = factory();
-		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
-	}
+		define("EventDispatcher", [], factory);
+	else if(typeof exports === 'object')
+		exports["EventDispatcher"] = factory();
+	else
+		root["Teronis"] = root["Teronis"] || {}, root["Teronis"]["EventDispatcher"] = factory();
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

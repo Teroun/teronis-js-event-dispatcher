@@ -8,8 +8,7 @@ module.exports = {
   entry: PackageFile.module,
   devtool: "source-map",
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.tsx?$/,
         loader: ["babel-loader", "awesome-typescript-loader"]
       },
@@ -23,7 +22,9 @@ module.exports = {
   output: {
     filename: path.basename(PackageFile.main),
     path: path.resolve(__dirname, path.dirname(PackageFile.main)),
-    libraryTarget: "umd"
+    library: ["Teronis", "EventDispatcher"],
+    libraryTarget: "umd",
+    umdNamedDefine: true
   },
   resolve: {
     modules: [path.join(__dirname, 'src'), "node_modules"],
