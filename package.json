@@ -1,6 +1,6 @@
 {
   "name": "@teronis/js-event-dispatcher",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "private": true,
   "main": "dist/teronis-js-event-dispatcher.js",
