@@ -1,4 +1,4 @@
-const ArgtiveEvent = require("../dist/teronis-js-event-dispatcher").ArgtiveEvent;
+const ArgtiveEvent = require("../dist/teronis-ts-event-dispatcher").ArgtiveEvent;
 const assert = require("chai").assert;
 
 describe("ArgtiveEvent", function () {
